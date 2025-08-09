@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  category    String
+  author      String
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("activities")
+}
+
+model CouncilMember {
+  id           String   @id @default(cuid())
+  name         String
+  position     String
+  grade        String
+  image        String?
+  bio          String?
+  achievements Json?    // JSON array for PostgreSQL
+  email        String?
+  phone        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("council_members")
+}
+
+model Setting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+
+  @@map("settings")
+}
