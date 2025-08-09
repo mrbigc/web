@@ -65,7 +65,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                value={password}\
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="กรุณาใส่รหัสผ่าน"
